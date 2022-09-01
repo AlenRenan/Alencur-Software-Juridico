@@ -1,12 +1,12 @@
 """
 Remover Cliente (integrar com banco de dados)
 """
-
+import mysql.connector
 '''
-Função de acessar o arquivo 
+Função de acessar o arquivo
 com os dados salvos
 '''
-import mysql.connector
+
 
 def acessarTxt(cpf):
 
@@ -19,10 +19,28 @@ def acessarTxt(cpf):
 
 
 '''
-Função de acessar os dados no database 
+Função de acessar os dados no database
 
 '''
 
 
-def acessarDatabase():
-    print()
+def acessarDatabase(cpf):
+
+    # cria uma conexão com o banco de dados
+    conexao = mysql.connector.connect(
+        host='localhost',
+        user='root',
+        password='root',
+        database='cadastroclientes',
+    )
+
+    # inicia conexão
+    cursor = conexao.cursor()
+
+    comando = f'SELECT * FROM clientes WHERE CPF = "{cpf}"'
+
+    cursor.execute(comando)
+
+    dadosAcessados = cursor.fetchall()  # ler o banco de dados
+
+    print(dadosAcessados)

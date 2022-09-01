@@ -20,14 +20,20 @@ while opcao != "4":
         email = str(input("Informe o email do cliente:"))
         nProcesso = str(input("Informe o numero do processo do cliente:"))
         logicaCadastrarCliente.cadastrarTxt(
-            nome, rg, cpf, telefone, email, nProcesso)
-        print("\n\nCLIENTE CADASTRADO COM SUCESSO\n\n")
+            nome, cpf, rg, telefone, email, nProcesso)
+        logicaCadastrarCliente.cadastrarDatabase(
+            nome, cpf, rg, telefone, email, nProcesso)
+        print("\n\nCLIENTE CADASTRADO COM SUCESSO !!! \n\n")
     if opcao == "2":
         cpf = str(input("\nInforme o CPF do cliente que será acessado:"))
-        logicaAcessarCliente.acessarTxt(cpf)
+        # logicaAcessarCliente.acessarTxt(cpf)
+        logicaAcessarCliente.acessarDatabase(cpf)
+
     if opcao == "3":
         cpf = str(
             input("\nInforme o CPF do cliente que será excluido - 0 PARA SAIR: "))
         logicaExcluirCliente.excluirTxt(cpf)
+        logicaExcluirCliente.excluirDatabase(cpf)
+        print("\n\nCLIENTE EXCLUIDO COM SUCESSO !!! \n\n")
     elif opcao == "0":
         break
